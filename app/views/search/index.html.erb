@@ -1,0 +1,35 @@
+<h1>搜索结果</h1>
+
+<p id="notice"><%= notice %>
+</p>
+<% if @home %>
+    <p>
+      <strong>姓名:</strong>
+      <%= @home.name %>
+
+    </p>
+
+    <p>
+      <strong>分数:</strong>
+      <%= @home.score %>
+    </p>
+
+    <p>
+      <strong>评分:</strong>
+      <%= @home.description %>
+    </p>
+<%#if current_user.id == 1%>
+    <%#= link_to (t 'edit'), edit_home_path(@home) %>
+<%# end %>
+    <!--x写法同上-->
+    <%= link_to_if current_user.id == 1, "编辑", edit_home_path(@home) do %>
+    <% end %>
+    <td>
+      <% if current_user.id == 1 %>
+          <%= link_to (t 'destroy'), @home, method: :delete, data: {confirm: '确定删除？'} %>
+      <% end %>
+    </td>
+<% else %>
+    <h3> 🔍找不到搜索的班级 </h3>
+<% end %>
+<%= link_to '返回', search_class_find_path %>

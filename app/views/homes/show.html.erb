@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %>
+</p>
+
+<p>
+  <strong>姓名:</strong>
+  <%= @home.name %>
+
+</p>
+
+<p>
+  <strong>分数:</strong>
+  <%= @home.score %>
+</p>
+
+<p>
+  <strong>评分:</strong>
+  <%= @home.description %>
+</p>
+<% if current_user.id == 1 %>
+    <%= link_to (t 'edit'), edit_home_path(@home) %>
+<% end %>
+
+
+<%= link_to '返回', homes_path %>

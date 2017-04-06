@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h3>
+  <% if current_user.id == 1 %>
+      <% a = "管理员" %>
+  <% else %>
+      <% a = "用户" %>
+  <% end %>
+  <%= "当前用户：#{current_user.email} (#{a})" %>
+</h3>
+
+<h1>列表</h1>
+<table>
+  <thead>
+  <tr>
+    <th>老师编号|</th>
+    <th>老师邮箱|</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% User.all.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= link_to user.email, homes_path(inquire: "#{user.id}") %></td>
+      </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
+<br>

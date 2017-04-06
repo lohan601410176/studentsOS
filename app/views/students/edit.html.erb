@@ -1,0 +1,76 @@
+<%- model_class = Student -%>
+<div class="page-header">
+  <h1><%= t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= form_for @student, :html => {:class => "form-horizontal student"} do |f| %>
+
+    <% if @student.errors.any? %>
+        <div id="error_expl" class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= pluralize(@student.errors.count, "error") %> prohibited this student from being
+              saved:</h3>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <% @student.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+    <% end %>
+    <h3>可移动的班级列表</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>班级编号|</th>
+        <th>班级名称|</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% Home.all.each do |home| %>
+          <tr>
+            <td><%= link_to home.id, home_path(home) %></td>
+            <td><%= link_to home.name, students_path(query: "#{home.id}") %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="form-group">
+      <%= f.label :姓名, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.text_field :name, :class => 'form-control' %>
+      </div>
+      <%= f.error_span(:name) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :年龄, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.text_field :age, :class => 'form-control' %>
+      </div>
+      <%= f.error_span(:age) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :分数, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.text_field :score, :class => 'form-control' %>
+      </div>
+      <%= f.error_span(:score) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :移动至班级编号, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.text_field :home_id, value: @student.home_id %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
+        <%= f.submit nil, :class => 'btn btn-primary' %>
+        <%= link_to t('.cancel', :default => t("helpers.links.返回")),
+                    homes_path, :class => 'btn btn-default' %>
+      </div>
+    </div>
+
+<% end %>
+

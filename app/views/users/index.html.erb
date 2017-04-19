@@ -1,0 +1,50 @@
+<%- model_class = User -%>
+<h3>
+  <% if current_user.id == 1 %>
+      <% a = "管理员" %>
+  <% else %>
+      <% a = "用户" %>
+  <% end %>
+  <%= "当前用户：#{current_user.email} (#{a})" %>
+</h3>
+
+
+<div class="well">
+  <div class="page-header">
+    <h1>老师列表</h1>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%=t '.actions', :default => t("helpers.操作") %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= link_to user.email, homes_path(inquire: "#{user.id}") %></td>
+          <td>
+            <%= link_to t('.show', :default => t("helpers.links.展示")),
+                        user_path(user), :class => 'btn btn-default btn-xs' %>
+            <%= link_to t('.edit', :default => t("helpers.links.编辑")),
+                        edit_user_path(user), :class => 'btn btn-default btn-xs' %>
+            <%= link_to t('.destroy', :default => t("helpers.links.删除")),
+                        user_path(user),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-xs btn-danger' %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+
+  <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+</div>
+
+
+

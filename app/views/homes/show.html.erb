@@ -16,6 +16,7 @@
   <strong>评分:</strong>
   <%= @home.description %>
 </p>
+
 <% if current_user.id == 1 %>
     <%= link_to (t 'edit'), edit_home_path(@home) %>
 <% end %>

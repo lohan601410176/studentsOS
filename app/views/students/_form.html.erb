@@ -1,6 +1,7 @@
 <%= form_for @student, :html => {:class => "form-horizontal student"} do |f| %>
 
     <% if @student.errors.any? %>
+
         <div id="error_expl" class="panel panel-danger">
           <div class="panel-heading">
             <h3 class="panel-title"><%= pluralize(@student.errors.count, "error") %> prohibited this student from being
@@ -14,7 +15,9 @@
             </ul>
           </div>
         </div>
+
     <% end %>
+
     <div class="form-group">
       <%= f.label :姓名, :class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
@@ -22,6 +25,7 @@
       </div>
       <%= f.error_span(:name) %>
     </div>
+
     <div class="form-group">
       <%= f.label :年龄, :class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
@@ -29,6 +33,7 @@
       </div>
       <%= f.error_span(:age) %>
     </div>
+
     <div class="form-group">
       <%= f.label :分数, :class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
@@ -36,6 +41,7 @@
       </div>
       <%= f.error_span(:score) %>
     </div>
+
     <!--通过传入的home_id,把这个值写在n新建界面的text表单里，并把这个表单隐藏-->
     <%= f.hidden_field :home_id, value: @student.home_id %>
     <!--#  下面写法也行，须和student的new控制器一致-->

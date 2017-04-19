@@ -1,11 +1,17 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_student, except: [:index, :new, :create]
+
 
   # GET /students
   # GET /students.json
   def index
     # byebug
-    @students = Home.find(params[:query]).students
+    if params[:query]
+      @students = Home.find(params[:query]).students
+      @students = @students.paginate(:page => params[:page], :per_page => 3)
+    else
+      @students = Student.paginate(:page => params[:page], :per_page => 3)
+    end
   end
 
   # GET /students/1
@@ -45,6 +51,7 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.update(student_params)
+
         format.html { redirect_to @student, notice: '学生更新成功' }
         format.json { render :show, status: :ok, location: @student }
       else

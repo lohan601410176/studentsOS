@@ -50,11 +50,11 @@
       <ul class="nav navbar-nav">
         <li>
           <% if user_signed_in? && current_user.id ==1 %>
-              <%= link_to "老师列表", teachers_path %>
+              <%= link_to "老师列表", users_path %>
           <% end %>
         </li>
         <li><%= link_to "班级列表", homes_path %></li>
-        <!--<li><%#= link_to "Link3", "/path3"  %></li>-->
+        <li><%= link_to "学生列表", students_path  %></li>
       </ul>
     </div>
   </div>

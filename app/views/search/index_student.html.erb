@@ -43,8 +43,10 @@
       <% end %>
       </tbody>
     </table>
+
 <% else %>
     <h3> 🔍找不到搜索的学生 </h3>
 <% end %>
+
 <%= link_to t('返回', :default => t("helpers.links.返回")), search_student_find_path,
             :class => 'btn btn-primary' %>

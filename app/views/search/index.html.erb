@@ -29,7 +29,9 @@
           <%= link_to (t 'destroy'), @home, method: :delete, data: {confirm: '确定删除？'} %>
       <% end %>
     </td>
+
 <% else %>
     <h3> 🔍找不到搜索的班级 </h3>
 <% end %>
+
 <%= link_to '返回', search_class_find_path %>

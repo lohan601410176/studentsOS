@@ -1,17 +1,22 @@
 class HomesController < ApplicationController
-  before_action :set_home, only: [:show, :edit, :update, :destroy]
+  before_action :set_home, except: [:index, :new, :create]
   before_action :authenticate_user!, :only => [:index, :new]
 
   def index
-    if params[:inquire] == nil
-      @homes = Home.all
-    else
+    # if会自动判断是否为nil
+    #if params[:inquire] == nil
+    if params[:inquire]
       @homes = User.find(params[:inquire]).homes
+      @homes = @homes.paginate(:page => params[:page], :per_page => 3)
+    else
+      @homes = Home.paginate(:page => params[:page], :per_page => 3)
     end
   end
 
   def show
-    @homes = User.find(current_user.id).homes
+    #current_user 就是一个实例
+    # @homes = User.find(current_user.id).homes
+    @homes = current_user.homes
   end
 
   def new

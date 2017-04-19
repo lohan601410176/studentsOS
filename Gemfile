@@ -56,6 +56,8 @@ gem 'less-rails', '~> 2.7'
 gem 'twitter-bootstrap-rails', '~> 4.0'
 gem 'cancancan'
 gem 'rolify'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -14,8 +14,10 @@
 
 <%= link_to t('.back', :default => t("helpers.links.返回")),
             homes_path, :class => 'btn btn-default' %>
+
 <%= link_to t('.edit', :default => t("helpers.links.编辑")),
             edit_student_path(@student), :class => 'btn btn-default' %>
+
 <%= link_to t('.destroy', :default => t("helpers.links.删除")),
             student_path(@student),
             :method => 'delete',

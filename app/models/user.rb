@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :appointments
-  has_many :homes,dependent: :destroy, through: :appointments
+  has_many :homes, through: :appointments #dependent: :destroy,
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
